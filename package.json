@@ -15,6 +15,7 @@
     "@rainbow-me/rainbowkit": "^2.2.8",
     "wagmi": "^2.9.0",
     "viem": "^2.33.0",
+    "ethers": "^5.7.2",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
     "@radix-ui/react-aspect-ratio": "^1.1.7",

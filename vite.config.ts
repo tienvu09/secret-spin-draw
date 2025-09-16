@@ -22,6 +22,7 @@ export default defineConfig({
         manualChunks: {
           vendor: ['react', 'react-dom'],
           wallet: ['@rainbow-me/rainbowkit', 'wagmi', 'viem'],
+          crypto: ['ethers'],
         },
       },
     },
