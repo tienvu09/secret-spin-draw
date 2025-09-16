@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -20,7 +20,16 @@ export const TicketCard = ({ id, price, jackpot, isEncrypted, numbers }: TicketC
   const [isLoading, setIsLoading] = useState(false);
   const [purchaseError, setPurchaseError] = useState<string | null>(null);
   const { address, isConnected } = useAccount();
-  const blockchainService = new BlockchainService();
+
+  // Debug logging
+  console.log(`TicketCard ${id} - isConnected:`, isConnected, 'address:', address);
+
+  // Clear error when wallet connects
+  useEffect(() => {
+    if (isConnected && purchaseError) {
+      setPurchaseError(null);
+    }
+  }, [isConnected, purchaseError]);
 
   const handlePurchase = async () => {
     if (!isConnected) {
@@ -32,6 +41,9 @@ export const TicketCard = ({ id, price, jackpot, isEncrypted, numbers }: TicketC
     setPurchaseError(null);
 
     try {
+      // Create blockchain service instance
+      const blockchainService = new BlockchainService();
+      
       // Generate random lottery numbers
       const lotteryNumbers = TicketEncryption.generateLotteryNumbers();
       
@@ -122,6 +134,11 @@ export const TicketCard = ({ id, price, jackpot, isEncrypted, numbers }: TicketC
             {!isConnected && (
               <p className="text-sm text-muted-foreground text-center">
                 Connect wallet to purchase
+              </p>
+            )}
+            {isConnected && (
+              <p className="text-sm text-green-600 text-center">
+                ✓ Wallet connected - Ready to purchase
               </p>
             )}
           </div>
