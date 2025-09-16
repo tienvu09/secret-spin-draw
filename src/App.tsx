@@ -10,6 +10,7 @@ import { wagmiConfig } from './config/wagmi';
 import Index from "./pages/Index";
 import Purchase from "./pages/Purchase";
 import Results from "./pages/Results";
+import MyTickets from "./pages/MyTickets";
 import NotFound from "./pages/NotFound";
 import '@rainbow-me/rainbowkit/styles.css';
 
@@ -23,13 +24,14 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/purchase" element={<Purchase />} />
-              <Route path="/results" element={<Results />} />
-              {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+                 <Routes>
+                   <Route path="/" element={<Index />} />
+                   <Route path="/purchase" element={<Purchase />} />
+                   <Route path="/results" element={<Results />} />
+                   <Route path="/my-tickets" element={<MyTickets />} />
+                   {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                   <Route path="*" element={<NotFound />} />
+                 </Routes>
           </BrowserRouter>
         </TooltipProvider>
       </RainbowKitProvider>
